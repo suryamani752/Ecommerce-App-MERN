@@ -13,6 +13,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [question, setQuestion] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -26,6 +27,7 @@ const Register = () => {
         password,
         phone,
         address,
+        question,
       });
       if (res.data && res.data.success) {
         toast.success(res.data.message, {
@@ -40,11 +42,12 @@ const Register = () => {
       console.log(error);
       toast.error("something went wrong");
     }
-    setName("");
-    setEmail("");
-    setPassword("");
-    setPhone("");
-    setAddress("");
+    // setName("");
+    // setEmail("");
+    // setPassword("");
+    // setPhone("");
+    // setAddress("");
+    // setQuestion("");
   };
 
   return (
@@ -101,6 +104,16 @@ const Register = () => {
                 placeholder="Address"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="what is your Dog Name"
+                value={question}
+                onChange={(e) => setQuestion(e.target.value)}
                 required
               />
             </div>

@@ -10,6 +10,7 @@ import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
 import PrivateRoute from "./components/Routes/Private";
 import Dashboard from "./pages/user/Dashboard";
+import ForgotPassword from "./pages/auth/ForgotPassword";
 
 // import "react-toastify/dist/ReactToastify.css";
 
@@ -23,6 +24,7 @@ function App() {
         </Route>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgotPassword" element={<ForgotPassword />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/policy" element={<Policy />} />

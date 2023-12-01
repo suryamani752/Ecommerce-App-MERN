@@ -1,10 +1,10 @@
 const userModel = require("../modals/userModal");
-const { hashPassword, comparePassword } = require("../utils/authHelper");
+const { comparePassword, hashPassword } = require("../utils/authHelper");
 const JWT = require("jsonwebtoken");
 
 const registerController = async (req, res) => {
   try {
-    const { name, email, password, phone, address } = req.body;
+    const { name, email, password, phone, address, question } = req.body;
     //validation
     if (!name) {
       return res.send({ message: "name is required" });
@@ -20,6 +20,9 @@ const registerController = async (req, res) => {
     }
     if (!address) {
       return res.send({ message: "address is required" });
+    }
+    if (!question) {
+      return res.send({ message: "question is required" });
     }
 
     //existing user
@@ -39,6 +42,7 @@ const registerController = async (req, res) => {
       password: hashedPassword,
       phone,
       address,
+      question,
     }).save();
     res.status(201).send({
       success: true,
@@ -131,7 +135,7 @@ const forgotPasswordController = async (req, res) => {
         message: "Wrong email or question",
       });
     }
-    const hashed = await hashedPassword(newPassword);
+    const hashed = await hashPassword(newPassword);
     await userModel.findByIdAndUpdate(user._id, { password: hashed });
     res.status(200).send({
       success: true,
